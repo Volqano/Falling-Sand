@@ -11,7 +11,7 @@ pg.display.set_caption("Falling sand simulator")
 def main():
 
     BACKGROUND_COLOR = (0, 0, 0)
-    SAND_COLOR = (200, 200, 200)
+    SAND_COLOR = (217, 170, 85)
     colors = [BACKGROUND_COLOR, SAND_COLOR]
     map = Map(64, colors, screen)
 
