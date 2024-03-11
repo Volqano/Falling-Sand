@@ -11,12 +11,6 @@ class Surface:
         self.screen = screen
         self.square_size = screen.get_width() / size
         self.surface = [[None] * size for _ in range(size)]
-        x = 50
-        sand_colors = [(242, 194, 136), (242, 200, 121), (242, 208, 167)]
-        for i in range(127, -1, -1):
-            y = i
-            Sand = MovableSolid(x, y, random.choice(sand_colors))
-            self.surface[y][x] = Sand
 
     def draw_surface(self):
         for i in range(self.size):
@@ -33,5 +27,12 @@ class Surface:
             for j in range(self.size):
                 if self.surface[i][j] != None:
                     self.surface[i][j].move(sr)
+
+    def paint_on_surface(self):
+        pos = pg.mouse.get_pos()
+        pos_x = pos[0] // 6
+        pos_y = pos[1] // 6
+        sand_colors = [(242, 194, 136), (242, 200, 121), (242, 208, 167)]
+        self.surface[pos_y][pos_x] = MovableSolid(pos_x, pos_y, random.choice(sand_colors))
 
 

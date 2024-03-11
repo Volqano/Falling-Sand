@@ -17,12 +17,19 @@ def main():
     sr = Surface(size, colors, screen)
 
     run = True
+    is_mouse_down = False
 
     while run:
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 run = False
+            elif event.type == pg.MOUSEBUTTONDOWN:
+                is_mouse_down = True
+            elif event.type == pg.MOUSEBUTTONUP:
+                is_mouse_down = False
         sr.draw_surface()
+        if is_mouse_down:
+            sr.paint_on_surface()
         sr.move_elements(sr)
         pg.display.flip()
         pg.time.Clock().tick(150)
