@@ -22,7 +22,7 @@ def main():
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 run = False
-        sr.draw_surface(size)
+        sr.draw_surface()
         pg.display.flip()
         pg.time.Clock().tick(60)
 

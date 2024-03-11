@@ -1,4 +1,6 @@
 import pygame as pg
+from game.element import *
+
 
 class Surface:
     def __init__(self, size, color, screen):
@@ -7,17 +9,17 @@ class Surface:
         self.color2 = color[1] #Color for sand
         self.screen = screen
         self.square_size = screen.get_width() / size
-        self.surface = [[0] * size for _ in range(size)]
-        self.surface[5][4] = 1
+        self.surface = [[None] * size for _ in range(size)]
+        self.surface[5][4] = Element(5, 4, color[1])
 
-    def draw_surface(self, size):
-        for i in range(size):
-            for j in range(size):
-                if self.surface[i][j] == 0:
+    def draw_surface(self):
+        for i in range(self.size):
+            for j in range(self.size):
+                if self.surface[i][j] == None:
                     pg.draw.rect(self.screen, self.color1,
                                  (i * self.square_size, j * self.square_size, self.square_size, self.square_size))
                 else:
-                    pg.draw.rect(self.screen, self.color2,
+                    pg.draw.rect(self.screen, self.surface[i][j].color,
                                  (i * self.square_size, j * self.square_size, self.square_size, self.square_size))
 
 
