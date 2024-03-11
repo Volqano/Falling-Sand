@@ -1,10 +1,10 @@
 import pygame as pg
-from game.map import *
+from game.surface import *
 
 pg.init()
 
-SCREEN_WIDTH = 960
-SCREEN_HEIGHT = 960
+SCREEN_WIDTH = 1024
+SCREEN_HEIGHT = 1024
 screen = pg.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pg.display.set_caption("Falling sand simulator")
 
@@ -12,8 +12,9 @@ def main():
 
     BACKGROUND_COLOR = (0, 0, 0)
     SAND_COLOR = (217, 170, 85)
+    size = 128
     colors = [BACKGROUND_COLOR, SAND_COLOR]
-    map = Map(64, colors, screen)
+    sr = Surface(size, colors, screen)
 
     run = True
 
@@ -21,7 +22,7 @@ def main():
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 run = False
-        map.draw_map()
+        sr.draw_surface(size)
         pg.display.flip()
         pg.time.Clock().tick(60)
 
