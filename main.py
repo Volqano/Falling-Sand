@@ -12,7 +12,7 @@ def main():
 
     BACKGROUND_COLOR = (0, 0, 0)
     SAND_COLOR = (217, 170, 85)
-    size = 64
+    size = 128
     colors = [BACKGROUND_COLOR, SAND_COLOR]
     sr = Surface(size, colors, screen)
 

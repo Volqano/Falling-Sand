@@ -1,6 +1,6 @@
 import pygame as pg
 from game.element import *
-
+from game.solid import *
 
 class Surface:
     def __init__(self, size, color, screen):
@@ -10,9 +10,11 @@ class Surface:
         self.screen = screen
         self.square_size = screen.get_width() / size
         self.surface = [[None] * size for _ in range(size)]
-        x = 20
-        y = 5
-        self.surface[y][x] = MovableSolid(x, y, color[1])
+        x = 50
+        for i in range(127, -1, -1):
+            y = i
+            Sand = MovableSolid(x, y, color[1])
+            self.surface[y][x] = Sand
 
     def draw_surface(self):
         for i in range(self.size):
