@@ -1,4 +1,5 @@
 import pygame as pg
+import random
 from game.element import *
 from game.solid import *
 
@@ -11,9 +12,10 @@ class Surface:
         self.square_size = screen.get_width() / size
         self.surface = [[None] * size for _ in range(size)]
         x = 50
+        sand_colors = [(242, 194, 136), (242, 200, 121), (242, 208, 167)]
         for i in range(127, -1, -1):
             y = i
-            Sand = MovableSolid(x, y, color[1])
+            Sand = MovableSolid(x, y, random.choice(sand_colors))
             self.surface[y][x] = Sand
 
     def draw_surface(self):

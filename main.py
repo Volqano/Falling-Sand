@@ -25,7 +25,7 @@ def main():
         sr.draw_surface()
         sr.move_elements(sr)
         pg.display.flip()
-        pg.time.Clock().tick(60)
+        pg.time.Clock().tick(150)
 
     pg.quit()
 
