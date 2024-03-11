@@ -16,8 +16,10 @@ class MovableSolid(Solid):
         super().__init__(x, y, color)
 
     def move(self, sr):
-        if self.x != 0:
-            if sr[self.y + 1][self.x] == None:
+        if self.y + 1 < sr.size:
+            if sr.surface[self.y + 1][self.x] == None:
+                sr.surface[self.y][self.x] = None
                 self.y += 1
+                sr.surface[self.y][self.x] = self
 
 
