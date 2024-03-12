@@ -1,5 +1,6 @@
 import pygame as pg
 
+
 class Element:
 
     def __init__(self, x, y, color):

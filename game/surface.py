@@ -3,6 +3,7 @@ import random
 from game.element import *
 from game.solid import *
 
+
 class Surface:
     def __init__(self, size, color, screen):
         self.size = size
@@ -15,7 +16,7 @@ class Surface:
     def draw_surface(self):
         for i in range(self.size):
             for j in range(self.size):
-                if self.surface[i][j] == None:
+                if not self.surface[i][j]:
                     pg.draw.rect(self.screen, self.color1,
                                  (j * self.square_size, i * self.square_size, self.square_size, self.square_size))
                 else:
@@ -25,13 +26,13 @@ class Surface:
     def move_elements(self, sr):
         for i in range(self.size - 1, -1, -1):
             for j in range(self.size):
-                if self.surface[i][j] != None:
+                if self.surface[i][j]:
                     self.surface[i][j].move(sr)
 
-    def paint_on_surface(self):
+    def paint_on_surface(self, res):
         pos = pg.mouse.get_pos()
-        pos_x = pos[0] // 6
-        pos_y = pos[1] // 6
+        pos_x = pos[0] // (res // self.size)
+        pos_y = pos[1] // (res // self.size)
         sand_colors = [(242, 194, 136), (242, 200, 121), (242, 208, 167)]
         self.surface[pos_y][pos_x] = MovableSolid(pos_x, pos_y, random.choice(sand_colors))
 
