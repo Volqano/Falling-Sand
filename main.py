@@ -19,6 +19,7 @@ def main():
 
     run = True
     is_mouse_down = False
+    is_stopped = False
 
     while run:
         for event in pg.event.get():
@@ -28,10 +29,20 @@ def main():
                 is_mouse_down = True
             elif event.type == pg.MOUSEBUTTONUP:
                 is_mouse_down = False
-        sr.draw_surface()
-        if is_mouse_down:
-            sr.paint_on_surface(SCREEN_HEIGHT)
-        sr.move_elements(sr)
+            elif event.type == pg.KEYDOWN:
+                keys = pg.key.get_pressed()
+                if keys[pg.K_ESCAPE]:
+                    run = False
+                elif keys[pg.K_r]:
+                    sr.reset()
+                elif keys[pg.K_SPACE]:
+                    is_stopped = not is_stopped
+
+        if not is_stopped:
+            sr.draw_surface()
+            if is_mouse_down:
+                sr.paint_on_surface(SCREEN_HEIGHT)
+            sr.move_elements(sr)
         pg.display.flip()
         pg.time.Clock().tick()
 

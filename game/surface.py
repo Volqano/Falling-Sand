@@ -36,4 +36,7 @@ class Surface:
         sand_colors = [(242, 194, 136), (242, 200, 121), (242, 208, 167)]
         self.surface[pos_y][pos_x] = MovableSolid(pos_x, pos_y, random.choice(sand_colors))
 
+    def reset(self):
+        self.surface = [[None] * self.size for _ in range(self.size)]
+
 
