@@ -2,6 +2,8 @@ import pygame as pg
 import random
 from game.element import *
 from game.solid import *
+from game.liquid import *
+from game.colors import colors
 
 
 class Surface:
@@ -29,12 +31,19 @@ class Surface:
                 if self.surface[i][j]:
                     self.surface[i][j].move(sr)
 
-    def paint_on_surface(self, res):
+    def paint_on_surface(self, res, element):
         pos = pg.mouse.get_pos()
         pos_x = pos[0] // (res // self.size)
         pos_y = pos[1] // (res // self.size)
-        sand_colors = [(242, 194, 136), (242, 200, 121), (242, 208, 167)]
-        self.surface[pos_y][pos_x] = MovableSolid(pos_x, pos_y, random.choice(sand_colors))
+        if not self.surface[pos_y][pos_x]:
+            if element == "sand":
+                self.surface[pos_y][pos_x] = MovableSolid(pos_x, pos_y, random.choice(colors[element]))
+            elif element == "water":
+                self.surface[pos_y][pos_x] = Liquid(pos_x, pos_y, random.choice(colors[element]))
+            elif element == "stone":
+                self.surface[pos_y][pos_x] = ImmovableSolid(pos_x, pos_y, random.choice(colors[element]))
+        if element == "eraser":
+            self.surface[pos_y][pos_x] = None
 
     def reset(self):
         self.surface = [[None] * self.size for _ in range(self.size)]

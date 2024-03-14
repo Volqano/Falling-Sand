@@ -20,6 +20,7 @@ def main():
     run = True
     is_mouse_down = False
     is_stopped = False
+    drawing_element = "sand"
 
     while run:
         for event in pg.event.get():
@@ -37,15 +38,24 @@ def main():
                     sr.reset()
                 elif keys[pg.K_SPACE]:
                     is_stopped = not is_stopped
+                elif keys[pg.K_1]:
+                    drawing_element = "sand"
+                elif keys[pg.K_2]:
+                    drawing_element = "water"
+                elif keys[pg.K_3]:
+                    drawing_element = "stone"
+                elif keys[pg.K_4]:
+                    drawing_element = "eraser"
 
         if not is_stopped:
             sr.draw_surface()
             if is_mouse_down:
-                sr.paint_on_surface(SCREEN_HEIGHT)
+                sr.paint_on_surface(SCREEN_HEIGHT, drawing_element)
             sr.move_elements(sr)
         pg.display.flip()
         pg.time.Clock().tick()
 
     pg.quit()
+
 
 main()
