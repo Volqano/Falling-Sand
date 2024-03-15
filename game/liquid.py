@@ -44,10 +44,9 @@ class Liquid(Element):
                 choice = [(self.x + 1 < sr.size and (not sr.surface[self.y][self.x + 1]), 1),
                           (self.x > 0 and not sr.surface[self.y][self.x - 1], -1)]
                 random.shuffle(choice)
-                condition1, direction1 = choice[0]
-                condition2, direction2 = choice[1]
+                condition1, direction1 = choice[1]
+                condition2, direction2 = choice[0]
                 if condition1:
                     self.change_position(sr, self.x, self.y, self.x + direction1, self.y)
-                    return
                 elif condition2:
                     self.change_position(sr, self.x, self.y, self.x + direction2, self.y)

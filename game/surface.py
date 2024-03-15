@@ -27,9 +27,16 @@ class Surface:
 
     def move_elements(self, sr):
         for i in range(self.size - 1, -1, -1):
-            for j in range(self.size):
-                if self.surface[i][j]:
-                    self.surface[i][j].move(sr)
+            decide = [True, False]
+            random.shuffle(decide)
+            if decide[0]:
+                for j in range(self.size):
+                    if self.surface[i][j]:
+                        self.surface[i][j].move(sr)
+            else:
+                for j in range(self.size - 1, -1, -1):
+                    if self.surface[i][j]:
+                        self.surface[i][j].move(sr)
 
     def paint_on_surface(self, res, element):
         pos = pg.mouse.get_pos()
